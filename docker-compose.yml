@@ -1,0 +1,38 @@
+version: "3.1"
+
+services:
+  telegraf:
+    image: telegraf:latest
+    container_name: telegraf_arkanoid
+    network_mode: "bridge"
+    volumes:
+      - ./containers/telegraf_arkanoid.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - influxdb
+    ports:
+      - '172.17.0.4:8094:8094/tcp'
+      - '172.17.0.4:8092:8092/udp'
+      - '172.17.0.4:8125:8125/udp'      
+
+  influxdb:
+    image: influxdb:1.8
+    container_name: influxdb_arkanoid
+    restart: always
+    network_mode: "bridge"
+    volumes:
+      - ./containers/influxdb_arkanoid_storage:/var/lib/influxdb
+    ports:
+      - '172.17.0.3:8086:8086'
+    environment:
+      - INFLUXDB_DB=arkanoid
+      - INFLUXDB_USER=arkanoid_publisher
+      - INFLUXDB_USER_PASSWORD=1 
+ 
+  mosquitto:
+    image: eclipse-mosquitto:1.6.14
+    container_name: arkanoid_broker
+    restart: always
+    network_mode: "bridge"
+    ports:
+      - '172.17.0.2:1883:1883'
+      - '172.17.0.2:9001:9001'
