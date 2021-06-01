@@ -6,7 +6,7 @@ services:
     container_name: telegraf_arkanoid
     network_mode: "bridge"
     volumes:
-      - ./containers/telegraf_arkanoid.conf:/etc/telegraf/telegraf.conf:ro
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
       - influxdb
     ports:
