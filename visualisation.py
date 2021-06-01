@@ -12,7 +12,7 @@ def visualisation_heatmap():
     dbuser = 'arkanoid_publisher'
     dbuser_password = '1'
     query = 'select object, x_coord, y_coord from coordinates;'
-    client = InfluxDBClient(host='172.17.0.2', port=8086, database=dbname)
+    client = InfluxDBClient(host='172.19.0.2', port=8086, database=dbname)
     client.switch_user(dbuser, dbuser_password)
 
     df = pd.DataFrame(client.query(query).get_points())
