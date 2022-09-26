@@ -9,6 +9,12 @@ port=1883
 def on_publish(client,userdata,result):             #create function for callback
     print("data published \n")
     pass
+
+
+def wrong_func():
+    print("do nothing")
+    pass
+
 client1= paho.Client("control1")                           #create client object
 client1.on_publish = on_publish                          #assign function to callback
 client1.connect(broker,port)                                 #establish connection
@@ -21,6 +27,8 @@ height = 600
 canvas = tkin.Canvas(tk, width=800, height=height, highlightthickness=0)
 canvas.pack()
 tk.update()
+
+
 class Ball:
     def __init__(self, canvas, paddle, color):
         self.canvas = canvas
@@ -55,6 +63,8 @@ class Ball:
         if pos[2] >= self.canvas_width:
             self.x = -2
         return(pos)
+
+
 class Paddle:
     def __init__(self, canvas, color, height = height):
         self.canvas = canvas
