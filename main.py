@@ -11,8 +11,8 @@ def on_publish(client,userdata,result):             #create function for callbac
     pass
 
 
-def wrong_func():
-    print("do nothing")
+def good_func():
+    print("do something good")
     pass
 
 client1= paho.Client("control1")                           #create client object
