@@ -95,6 +95,14 @@ class Paddle:
         return (pos)
 
 try:
+    
+    for i in range(10):
+        if i == 5:
+            for j in range(i):
+                if j == 2:
+                    print("mda")
+
+
     paddle = Paddle(canvas, 'White', height)
     ball = Ball(canvas, paddle, 'red')
     while not ball.hit_bottom:
